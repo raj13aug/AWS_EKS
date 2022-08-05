@@ -84,19 +84,19 @@ module "eks" {
       resolve_conflicts = "OVERWRITE"
     }
     kube-proxy = {
-      addon_version     = "v1.22.6-eksbuild.1"
+      addon_version     = "v1.22.11-eksbuild.2"
       resolve_conflicts = "OVERWRITE"
     }
     vpc-cni = {
-      addon_version     = "v1.10.2-eksbuild.1"
+      addon_version     = "v1.11.2-eksbuild.1"
       resolve_conflicts = "OVERWRITE"
     }
     aws-ebs-csi-driver = {
-      addon_version     = "v1.5.2-eksbuild.1"
+      addon_version     = "v1.10.0-eksbuild.1"
       resolve_conflicts = "OVERWRITE"
     }
   }
-
+  
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
 

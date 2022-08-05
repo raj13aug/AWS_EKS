@@ -1,5 +1,4 @@
-cluster_fqdn = "nataraj.robofarming.link"
-# Domain where TF will create NS record to point to the new "zone" `cluster_fqdn`
+cluster_fqdn = "i2.robofarming.link"
 base_domain     = "robofarming.link"
 aws_assume_role = "arn:aws:iam::932999788441:role/eks-admin"
 
@@ -16,7 +15,13 @@ aws_tags_cluster_level = {
 
 aws_default_region = "us-east-1"
 
+
 aws_auth_roles = [
+  {
+    rolearn  = "arn:aws:iam::932999788441:role/eks-admin"
+    username = "system:aws:root"
+    groups   = ["system:masters"]
+  },
   {
     rolearn  = "arn:aws:iam::932999788441:user/Terraform"
     username = "system:aws:root"
@@ -24,8 +29,9 @@ aws_auth_roles = [
   },
 ]
 
+
 eks_managed_node_groups = {
-  ruzickap02-ng01 = {
+  i2-ng01 = {
     description = "Amazon EKS managed node group for robofarming.link"
     name        = "eks-ng01"
 
@@ -61,7 +67,7 @@ eks_managed_node_groups = {
 }
 
 cloudwatch_log_group_retention_in_days = 1
-cluster_enabled_log_types              = [] # "audit", "authenticator"
+cluster_enabled_log_types              = [] # "audit", "authenticator" "API server", "Controller manager", "Scheduler"
 
 aws_tags_group_level = {
   cluster_group = "dev-evn"
